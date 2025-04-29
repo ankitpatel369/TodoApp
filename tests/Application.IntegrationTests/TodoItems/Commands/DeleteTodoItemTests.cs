@@ -32,12 +32,18 @@ public class DeleteTodoItemTests : BaseTestFixture
         var itemId = await SendAsync(new CreateTodoItemCommand
         {
             ListId = listId,
-            Title = "New Item"
+            Title = "New Item",
+            BackgroundColor = "#FF5733"
         });
+
+        // Validate that the item exists with the correct background color before deletion
+        var item = await FindAsync<TodoItem>(itemId);
+        item.Should().NotBeNull();
+        item!.BackgroundColor.Should().Be("#FF5733");
 
         await SendAsync(new DeleteTodoItemCommand(itemId));
 
-        var item = await FindAsync<TodoItem>(itemId);
+        item = await FindAsync<TodoItem>(itemId);
 
         item.Should().BeNull();
     }

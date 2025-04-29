@@ -40,6 +40,8 @@ public class ValidationExceptionTests
                 new ValidationFailure("Password", "must contain a digit"),
                 new ValidationFailure("Password", "must contain upper case letter"),
                 new ValidationFailure("Password", "must contain lower case letter"),
+                new ValidationFailure("BackgroundColor", "must be a valid hex color code"),
+                new ValidationFailure("BackgroundColor", "must not be empty"),
             };
 
         var actual = new ValidationException(failures).Errors;
@@ -58,6 +60,12 @@ public class ValidationExceptionTests
                 "must contain upper case letter",
                 "must contain at least 8 characters",
                 "must contain a digit",
+        });
+
+        actual["BackgroundColor"].Should().BeEquivalentTo(new string[]
+        {
+            "must be a valid hex color code",
+            "must not be empty",
         });
     }
 }

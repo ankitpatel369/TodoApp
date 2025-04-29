@@ -38,7 +38,8 @@ public class UpdateTodoItemTests : BaseTestFixture
         var command = new UpdateTodoItemCommand
         {
             Id = itemId,
-            Title = "Updated Item Title"
+            Title = "Updated Item Title",
+            BackgroundColor = "#FF5733"
         };
 
         await SendAsync(command);
@@ -47,6 +48,7 @@ public class UpdateTodoItemTests : BaseTestFixture
 
         item.Should().NotBeNull();
         item!.Title.Should().Be(command.Title);
+        item!.BackgroundColor.Should().Be(command.BackgroundColor);
         item.LastModifiedBy.Should().NotBeNull();
         item.LastModifiedBy.Should().Be(userId);
         item.LastModified.Should().NotBeNull();
