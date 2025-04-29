@@ -809,7 +809,6 @@ export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
     id?: number;
     title?: string | undefined;
     done?: boolean;
-    backgroundColor?: string | undefined;
 
     constructor(data?: IUpdateTodoItemCommand) {
         if (data) {
@@ -825,7 +824,6 @@ export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
             this.id = _data["id"];
             this.title = _data["title"];
             this.done = _data["done"];
-            this.backgroundColor = _data["backgroundColor"];
         }
     }
 
@@ -841,7 +839,6 @@ export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
         data["id"] = this.id;
         data["title"] = this.title;
         data["done"] = this.done;
-        data["backgroundColor"] = this.backgroundColor;
         return data;
     }
 }
@@ -850,7 +847,6 @@ export interface IUpdateTodoItemCommand {
     id?: number;
     title?: string | undefined;
     done?: boolean;
-    backgroundColor?: string | undefined;
 }
 
 export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand {
